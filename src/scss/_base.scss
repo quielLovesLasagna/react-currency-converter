@@ -1,0 +1,84 @@
+@use "./abstracts" as abs;
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: abs.$ff-poppins;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: abs.toRem(16px);
+}
+
+.container {
+	background: linear-gradient(
+		rgba(2, 0, 36, 1) 0%,
+		rgba(9, 9, 121, 1) 0%,
+		rgba(0, 212, 255, 1) 100%
+	);
+	padding: abs.toRem(30px);
+	border-radius: abs.toRem(15px);
+	box-shadow: 0 abs.toRem(10px) abs.toRem(10px) rgba(0, 0, 0, 0.2);
+
+	&__heading {
+		color: rgb(255, 255, 255);
+		margin-bottom: abs.toRem(30px);
+	}
+}
+
+.form {
+	margin-bottom: abs.toRem(20px);
+
+	&__wrapper:not(:last-child) {
+		margin-bottom: abs.toRem(40px);
+	}
+
+	& label {
+		color: rgb(255, 255, 255);
+		font-weight: abs.$fw-medium;
+	}
+
+	&__input {
+		width: 100%;
+		font-family: inherit;
+		font-size: inherit;
+		padding: abs.toRem(5px);
+		border: 1px solid rgb(0, 0, 0);
+		border-radius: abs.toRem(10px);
+	}
+}
+
+.result {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: rgb(255, 255, 255);
+	margin-bottom: abs.toRem(20px);
+
+	& span {
+		color: rgb(0, 0, 0);
+		font-size: abs.toRem(16px);
+		font-weight: abs.$fw-tiny;
+	}
+}
+
+.convert-btn {
+	cursor: pointer;
+	display: block;
+	width: 70%;
+	margin: 0 auto;
+	font-size: inherit;
+	font-family: inherit;
+	background-color: rgba(9, 9, 121, 1);
+	color: rgb(255, 255, 255);
+	padding: abs.toRem(10px);
+	border: none;
+	border-radius: abs.toRem(10px);
+}
