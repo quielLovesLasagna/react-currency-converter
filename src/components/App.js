@@ -1,50 +1,21 @@
-import { useState } from "react";
 import Form from "./Form";
 import Option from "./Option";
 import { currencyEntries, currenciesFullName, currenciesSymbol } from "./Data";
+import { useConvert } from "./useConvert";
 
 export default function App() {
-	const [amount, setAmount] = useState("");
-	const [currencyFrom, setCurrencyFrom] = useState("EUR");
-	const [currencyTo, setCurrencyTo] = useState("USD");
-	const [result, setResult] = useState("0.00");
-	const [isConverting, setIsConverting] = useState(false);
-	const [error, setError] = useState("");
-
-	async function convert() {
-		try {
-			if (!amount) {
-				setResult("");
-				return;
-			}
-
-			setIsConverting(true);
-			setError("");
-
-			const res = await fetch(
-				`https://api.frankfurter.app/latest?amount=${amount}&from=${currencyFrom}&to=${currencyTo}`
-			);
-
-			if (!res.ok) {
-				throw new Error("There was a problem fetching the data...");
-			}
-
-			const data = await res.json();
-
-			if (data.response === "False") {
-				throw new Error("Could not convert currency...");
-			}
-
-			const rate = data.rates[currencyTo];
-
-			setResult(rate);
-		} catch (err) {
-			console.log(err);
-			setError(err.message);
-		} finally {
-			setIsConverting(false);
-		}
-	}
+	const {
+		amount,
+		setAmount,
+		result,
+		isConverting,
+		error,
+		currencyFrom,
+		currencyTo,
+		setCurrencyFrom,
+		setCurrencyTo,
+		convert,
+	} = useConvert();
 
 	// ! -- Invoke convert func to convert currency
 	function handleConvert() {
